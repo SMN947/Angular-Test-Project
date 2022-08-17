@@ -1,0 +1,33 @@
+<hello name="{{ name }}"></hello>
+<p>Start editing to see some magic happen :)</p>
+
+{{ nameFilter }} - {{ lastNameFilter }} - {{ cityFilter }}
+
+<fieldset>
+  <legend>Nombre</legend>
+  <input type="text" placeholder="nombre" (keyup)="filtrar($event, 'N')" />
+</fieldset>
+<fieldset>
+  <legend>Apellido</legend>
+  <input type="text" placeholder="Apellido" (keyup)="filtrar($event, 'A')" />
+</fieldset>
+<fieldset>
+  <legend>Ciudad</legend>
+  <select (change)="filtrar($event, 'C')">
+    <option *ngFor="let city of listCities | keyvalue" value="{{city.key}}">
+      {{ city.key }}
+    </option>
+  </select>
+</fieldset>
+<br />
+<ul *ngIf="listUsersFiltered.length > 0; else elseBlock">
+  <li *ngFor="let user of listUsersFiltered">
+    {{ user.name.firstname }} - {{ user.name.lastname }} -
+    {{ user.address.city }}
+  </li>
+</ul>
+<ng-template #elseBlock>
+  <span *ngIf="!(listUsersFiltered.length > 0)"
+    >No existen resultados</span
+  ></ng-template
+>
