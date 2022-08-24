@@ -1,5 +1,13 @@
-<hello name="{{ name }}"></hello>
-<p>Start editing to see some magic happen :)</p>
+<button (click)="hasAccess = !hasAccess">hasAccess: {{ hasAccess }}</button>
+<div *ngFor="let check of sliders">
+  <label class="switch">
+    <input *ngIf="check" checked [disabled]="hasAccess" type="checkbox" />
+    <input *ngIf="!check" type="checkbox" [disabled]="hasAccess" />
+    <span class="slider round"></span>
+  </label>
+  {{ check }}
+</div>
+<hr />
 
 {{ nameFilter }} - {{ lastNameFilter }} - {{ cityFilter }}
 
@@ -14,7 +22,7 @@
 <fieldset>
   <legend>Ciudad</legend>
   <select (change)="filtrar($event, 'C')">
-    <option *ngFor="let city of listCities | keyvalue" value="{{city.key}}">
+    <option *ngFor="let city of listCities | keyvalue" value="{{ city.key }}">
       {{ city.key }}
     </option>
   </select>

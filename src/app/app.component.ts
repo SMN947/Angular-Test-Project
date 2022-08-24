@@ -18,6 +18,8 @@ export class AppComponent {
   public lastNameFilter: String = '';
   public cityFilter: String = '';
   public listCities: any = {};
+  public sliders: any[any] = [true, false, false, true, false];
+  public hasAccess: boolean = false;
 
   loadUsers() {
     this.request.getListUsers().subscribe((data: any) => {
@@ -35,7 +37,6 @@ export class AppComponent {
     });
   }
   filtrar(ev, tipo) {
-    console.log(ev.target.value, tipo);
     this.nameFilter =
       tipo == 'N' ? ev.target.value.toLowerCase() : this.nameFilter;
     this.lastNameFilter =

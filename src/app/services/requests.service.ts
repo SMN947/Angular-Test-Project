@@ -7,7 +7,6 @@ export class RequestsService {
   constructor(private http: HttpClient) {}
 
   getListUsers() {
-    console.log('in request');
     return this.http.get<any[]>('https://fakestoreapi.com/users');
   }
 }
